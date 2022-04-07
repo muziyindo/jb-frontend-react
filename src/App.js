@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react"
+import { Route, Link } from "react-router-dom"
 import './App.css';
 import SearchBox from "./components/SearchBox";
 import Banner from "./components/Banner";
 import JobsPreview from "./components/JobsPreview";
 import Loader from "./components/Loader";
+import About from "./components/About"
+import Jobs from "./components/Jobs"
+import Contact from "./components/Contact"
 
 function App() {
 
 
   const [jobs, setJobs] = useState([])
   const [loaderState, setLoaderState] = useState(true)
-  let [temp,setTemp] = useState([]);
-  
+  let [temp, setTemp] = useState([]);
+
 
   // Fetch Jobs
   const fetchJobs = async () => {
@@ -24,20 +28,19 @@ function App() {
   }
 
   useEffect(() => {
-    const intervalID = setInterval(() => {
+    //setInterval(() => {
 
-    const getJobs = async () => {
-      const jobsFromServer = await fetchJobs()
-      setLoaderState(false)
-      setTemp(jobsFromServer);
-      setJobs(jobsFromServer);
-      //console.log(temp);
-    }
-    getJobs()
+      const getJobs = async () => {
+        const jobsFromServer = await fetchJobs()
+        setLoaderState(false)
+        setTemp(jobsFromServer);
+        setJobs(jobsFromServer);
+        //console.log(temp);
+      }
+      getJobs()
 
-    }, 1000)
-    
-    return () => clearInterval(intervalID);
+    //}, 1000)
+
 
   }, [])
 
@@ -50,7 +53,7 @@ function App() {
     })
 
     setJobs(filteredJobs)
-    
+
     if (!searchKeyword) {
       setLoaderState(true)
       const refreshedJobsFromServer = await fetchJobs();
@@ -76,14 +79,14 @@ function App() {
             <div className="col-sm-4 col-md-8 our-logo">
               JOBBOARD
             </div>
-            <div className="col-sm-2 col-md-1 nav-item_"><i className="fas fa-home"></i> Home</div>
-            <div className="col-sm-2 col-md-1 nav-item_"><i className="fas fa-user-circle"></i> Jobs</div>
-            <div className="col-sm-2 col-md-1 nav-item_"><i className="fas fa-info-circle"></i> About</div>
-            <div className="col-sm-2 col-md-1 nav-item_"><i className="fas fa-phone"></i> Contact</div>
+            <div className="col-sm-2 col-md-1 nav-item_"><Link to="/"><i className="fas fa-home"></i> Home</Link></div>
+            <div className="col-sm-2 col-md-1 nav-item_"><Link to="/jobs"><i className="fas fa-user-circle"></i> Jobs</Link></div>
+            <div className="col-sm-2 col-md-1 nav-item_"><Link to="/about"><i className="fas fa-info-circle"></i> About</Link></div>
+            <div className="col-sm-2 col-md-1 nav-item_"><Link to="/contact"><i className="fas fa-phone"></i> Contact</Link></div>
           </div>
 
           <nav className="navbar navbar-expand-lg navbar-dark b-nav">
-            <a className="navbar-brand our-logo" href="#">JOBBOARD</a>
+            <Link to="/" className="navbar-brand our-logo">JOBBOARD</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
               aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
@@ -92,22 +95,22 @@ function App() {
               <ul className="navbar-nav">
 
                 <li className="nav-item active">
-                  <a className="nav-link" href="#"><i className="fas fa-home"></i> Home <span
-                    className="sr-only">(current)</span></a>
+                <Link to="/" className="nav-link"><i className="fas fa-home"></i> Home <span
+                    className="sr-only">(current)</span></Link>
                 </li>
 
                 <li className="nav-item">
-                  <a className="nav-link" href="#"><i className="fas fa-user-circle"></i> Jobs <span
-                    className="sr-only"></span></a>
+                <Link to="/jobs" className="nav-link"><i className="fas fa-user-circle"></i> Jobs <span
+                    className="sr-only"></span></Link>
                 </li>
 
                 <li className="nav-item">
-                  <a className="nav-link" href="#"><i className="fas fa-info-circle"></i> About <span
-                    className="sr-only">(current)</span></a>
+                <Link to="/about" className="nav-link"><i className="fas fa-info-circle"></i> About <span
+                    className="sr-only">(current)</span></Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="{{ route('register-user') }}"><i className="fas fa-user-circle"></i>
-                    Contact</a>
+                <Link to="/contact" className="nav-link"><i className="fas fa-user-circle"></i>
+                    Contact</Link>
                 </li>
               </ul>
             </div>
@@ -116,12 +119,23 @@ function App() {
       </div>
       {/* Navigation Bar end */}
 
-      <Banner></Banner>
+      <Route exact path="/">
+        <Banner></Banner>
+        <SearchBox searchFilter={searchFilter}></SearchBox>
+        {loaderState ? <Loader /> : jobs.map(JobsPreview)}
+      </Route>
 
+      <Route path="/about"  >
+        <About />
+      </Route>
 
-      <SearchBox searchFilter={searchFilter}></SearchBox>
+      <Route path="/jobs"  >
+        <Jobs />
+      </Route>
 
-      {loaderState ? <Loader /> : jobs.map(JobsPreview)}
+      <Route path="/contact"  >
+        <Contact />
+      </Route>
 
     </div>
   );

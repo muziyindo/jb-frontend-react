@@ -39,6 +39,9 @@
             /* line-height: 5px; */
 
         }
+        .nav-item_ >a{
+            color:#fff !important;
+        }
 
         .navbar-light .navbar-nav .nav-link {
             color: #fff;
