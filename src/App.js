@@ -138,7 +138,7 @@ function App() {
         <Contact />
       </Route>
 
-      <Route path="/jobDetails/:id"  >
+      <Route path="/jobdetails/:id"  >
         <JobDetails />
       </Route>
 
