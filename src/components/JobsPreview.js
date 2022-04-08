@@ -1,7 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const JobsPreview = (item) => {
 
+    const newTo={
+        pathname:"/jobDetails/"+item.id,
+    }
     
     return (
 
@@ -22,8 +26,8 @@ const JobsPreview = (item) => {
 
                                 </div>
                                 <div className="col-12 readmore-button-section" >
-                                    <button type="submit" className="btn btn-primary btn-md read-more-button"><i
-                                        className="fas fa-eye"></i></button>
+                                <Link to={newTo} ><button type="button" className="btn btn-primary btn-md read-more-button"><i
+                                        className="fas fa-eye"></i></button></Link>
                                 </div>
 
                             </div>

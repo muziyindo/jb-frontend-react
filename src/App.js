@@ -8,6 +8,7 @@ import Loader from "./components/Loader";
 import About from "./components/About"
 import Jobs from "./components/Jobs"
 import Contact from "./components/Contact"
+import JobDetails from "./components/JobDetails";
 
 function App() {
 
@@ -77,7 +78,7 @@ function App() {
         <div className="container-fluid nav-container">
           <div className="row custom-nav">
             <div className="col-sm-4 col-md-8 our-logo">
-              JOBBOARD
+            <img className="img-fluid_" width="105" height="40" src={process.env.PUBLIC_URL + "images/aijobs.png"} alt="logo"></img>
             </div>
             <div className="col-sm-2 col-md-1 nav-item_"><Link to="/"><i className="fas fa-home"></i> Home</Link></div>
             <div className="col-sm-2 col-md-1 nav-item_"><Link to="/jobs"><i className="fas fa-user-circle"></i> Jobs</Link></div>
@@ -135,6 +136,10 @@ function App() {
 
       <Route path="/contact"  >
         <Contact />
+      </Route>
+
+      <Route path="/jobDetails/:id"  >
+        <JobDetails />
       </Route>
 
     </div>
