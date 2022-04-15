@@ -3,11 +3,11 @@ import React from 'react'
 const About = () => {
   return (
     <div className="container search-box">
-       <center> <h2>ABOUT AIJOBS</h2></center>
-        <p>AIJobs is the worldwide leader on insights about jobs and companies. Built on the foundation of increasing workplace transparency, AIJobs offers insights into the employee experience powered by millions of company ratings and reviews, CEO approval ratings, salary reports, interview reviews and questions, benefits reviews, office photos and more, combined with the latest jobs. </p>
-        <p>Unlike other career sites, all of this information is shared by those who know a company best — the employees. In turn, job seekers on AIJobs are well-researched and more informed about the jobs and companies they apply to and consider joining. This is why thousands of employers across all industries and sizes turn to AIJobs to help them recruit and hire quality candidates at scale who stay longer. AIJobs is available anywhere via its mobile apps.</p>
+       <center> <h1 className="header-title">ABOUT AIJOBS</h1></center>
+        <p>We all know how hard it is to find the right job board across nigeria when dealing with recruitment. For that reason we launched DMMSOLUTIONJOBS, a project created to help job seekers identify the right job that best fit their qualification. </p>
+        <p>Launched in 2015 by DM Multiservices Solutions, a parent company for which DMMSOLUTIONJOBS is a subsidiary. We provides HR professionals a centralized source of information about job nation wide. Founded in 2013, We are an HR & communications agency advertising for more than 250 customers</p>
 
-        <p>AIJobs operates as a part of Recruit Holdings’ growing HR Technology business segment. AIJobs is headquartered in Lagos, Nigeria and was founded by Dauda Musideen, Ekundayo Oluseye in 2012, before its launch in 2015.</p>
+        <p>Our platform was designed to make Job seekers work easier with advanced search functionality.</p>
     
     </div>
   )

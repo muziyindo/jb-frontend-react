@@ -9,6 +9,8 @@ import About from "./components/About"
 import Jobs from "./components/Jobs"
 import Contact from "./components/Contact"
 import JobDetails from "./components/JobDetails";
+import PaginatedItems from "./components/PaginatedItems";
+
 
 function App() {
 
@@ -20,7 +22,8 @@ function App() {
 
   // Fetch Jobs
   const fetchJobs = async () => {
-    const response = await fetch('http://127.0.0.1:8000/api/jobs')
+    // const response = await fetch('https://godicham.com/dmmsolutionjobs-backend/api/jobs')
+    const response = await fetch('http://localhost:8000/api/jobs')
     if (!response.ok) {
       throw new Error('Data coud not be fetched!')
     } else {
@@ -78,16 +81,18 @@ function App() {
         <div className="container-fluid nav-container">
           <div className="row custom-nav">
             <div className="col-sm-4 col-md-8 our-logo">
-            <img className="img-fluid_" width="105" height="40" src={process.env.PUBLIC_URL + "images/aijobs.png"} alt="logo"></img>
+              {/* <span className="aijobs">AIJOBS</span> */}
+              {/* <Link to="/" >DMMSOLUTIONJOBS</Link> */}
+            <img className="img-fluid_" width="174" height="35" src={process.env.PUBLIC_URL + "/images/ourlogo.png"} alt="logo"></img>
             </div>
-            <div className="col-sm-2 col-md-1 nav-item_"><Link to="/"><i className="fas fa-home"></i> Home</Link></div>
+            <div className="col-sm-2 col-md-1 nav-item_ first-nav-item"><Link to="/"><i className="fas fa-home"></i> Home</Link></div>
             <div className="col-sm-2 col-md-1 nav-item_"><Link to="/jobs"><i className="fas fa-user-circle"></i> Jobs</Link></div>
             <div className="col-sm-2 col-md-1 nav-item_"><Link to="/about"><i className="fas fa-info-circle"></i> About</Link></div>
             <div className="col-sm-2 col-md-1 nav-item_"><Link to="/contact"><i className="fas fa-phone"></i> Contact</Link></div>
           </div>
 
           <nav className="navbar navbar-expand-lg navbar-dark b-nav">
-            <Link to="/" className="navbar-brand our-logo">JOBBOARD</Link>
+            <Link to="/" className="navbar-brand our-logo">DMMSOLUTIONJOBS</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
               aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
@@ -123,7 +128,8 @@ function App() {
       <Route exact path="/">
         <Banner></Banner>
         <SearchBox searchFilter={searchFilter}></SearchBox>
-        {loaderState ? <Loader /> : jobs.map(JobsPreview)}
+        {/* {loaderState ? <Loader /> : jobs.map(JobsPreview)} */}
+        {loaderState ? <Loader /> : <PaginatedItems itemsPerPage={10} items = {jobs} /> }
       </Route>
 
       <Route path="/about"  >

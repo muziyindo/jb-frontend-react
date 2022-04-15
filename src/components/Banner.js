@@ -8,7 +8,7 @@ const Banner = () => {
 
 
         <div className="container-fluid banner-image">
-            <img className="img-fluid" src={process.env.PUBLIC_URL + "images/banner3.png"} ></img>
+            <img className="img-fluid" src={process.env.PUBLIC_URL + "images/banner3.png"} alt="banner"></img>
 
         </div>
 

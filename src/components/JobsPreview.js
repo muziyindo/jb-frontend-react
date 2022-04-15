@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Parser from 'html-react-parser'
 
 const JobsPreview = (item) => {
     
@@ -15,10 +16,10 @@ const JobsPreview = (item) => {
                                     {item.recruiting_company}
                                 </div>
                                 <div className="col-12 job-title">
-                                {item.title} | <code className="date-posted" >Posted {item.created_at}</code>
+                                {item.title} | <scan className="date-posted text-secondary" >Posted {item.created_at}</scan> | <scan className="date-posted text-danger" >Location is { item.location }</scan>
                                 </div>
                                 <div className="col-12 job-details">
-                                {(item.description).substring(0,150)}
+                                {Parser((item.description).substring(0,300)+"...")}
 
                                 </div>
                                 <div className="col-12 readmore-button-section" >
